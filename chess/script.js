@@ -117,11 +117,11 @@ class Piece {
         this.el.addEventListener("mouseover", (e) => {
             this.calcOptionalSteps();
             if (this.optionalSteps.length === 0)
-                this.el.style.cursor = 'not-allowed';
-            else if (this.isInDanger()) {
-                this.el.style.cursor = 'grab';
-            } else
+                this.el.style.cursor = 'not-allowed'
+            else
                 this.el.style.cursor = 'pointer';
+            if (this.isInDanger())
+                this.el.style.cursor = 'grab';
         })
     }
     isInDanger() {
@@ -260,7 +260,6 @@ const init = () => {
     boardData = new BoardData(ROWS, COLS, table);
     boardData.placeAllSoldiers();// place all pieces on the board
 }
-
 window.addEventListener('load', () => {
     console.log('page is fully loaded');
     init();
