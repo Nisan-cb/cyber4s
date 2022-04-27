@@ -27,10 +27,10 @@ h1 {
 table,
 tr,
 td {
-    border: 3px solid black;
-    border: none;
+    border: 1px solid rgb(255, 255, 255);
+    /* border: none; */
     position: relative;
-    margin: 1px;
+    margin: 0px;
 }
 
 
@@ -42,6 +42,7 @@ td {
 
 td:hover {
     cursor: crosshair;
+    background-color: rgba(0, 139, 139, 0.789) !important;
 }
 
 tr:nth-child(odd) td:nth-child(odd) {
@@ -60,9 +61,15 @@ tr:nth-child(even) td:nth-child(odd) {
     background-color: #e5c1a4;
 }
 
-.checked {
+.selected {
     border: 1px solid rgb(137, 199, 12);
     background-color: rgba(0, 139, 139, 0.789) !important;
+    cursor: pointer !important;
+}
+
+.step {
+    /* border: 1px solid rgb(0, 0, 0); */
+    background-color: rgba(30, 153, 73, 0.727) !important;
     cursor: pointer !important;
 }
 
@@ -71,6 +78,8 @@ tr:nth-child(even) td:nth-child(odd) {
     margin-bottom: 50px;
     border: 20px solid brown;
     border-radius: 16px;
+    background-color: white;
+    position: relative;
 }
 
 #board img {
@@ -106,5 +115,17 @@ tr:nth-child(even) td:nth-child(odd) {
 }
 
 .turn {
-    border: 2px solid greenyellow;
+    border: 4px solid greenyellow;
+}
+
+.message-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    color: brown;
+    width: max-content;
+    padding: 50px 30px;
+    border-radius: 20px;
 }
