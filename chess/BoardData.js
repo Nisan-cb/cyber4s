@@ -38,7 +38,6 @@ class BoardData {
     }
 
     callCurrentGroupPossibleSteps() {
-        console.log(this.currentGroup)
         for (const piece of Object.values(this.currentGroup.piecesList)) {
             if (!piece) continue;
             piece.calcOptionalSteps(this.matrix);
@@ -86,14 +85,13 @@ class BoardData {
     switch() {
         this.displayTurn();
         this.currentPiece = undefined;
-        this.currentGroup = this.getOpponentGroup();
         this.callCurrentGroupPossibleSteps();
         const dangerCells = this.getOpponentStepsMap();
         this.filterCurrentKingSteps(dangerCells);
         this.checkMode = this.isCheckMode(this.currentGroup)
         if (this.checkMode) console.log('protect on your king !!');
         if (this.isCheckmateMode())
-            this.createWinnerMessage(`${this.getOpponentGroup().color} wins!`);
+            this.createMessage(`${this.getOpponentGroup().color} wins!`);
     }
 
     isValidMove(i, j) {
@@ -113,6 +111,7 @@ class BoardData {
     }
 
     displayMoves(piece) {
+        this.table.rows[piece.r].cells[piece.c].classList.add('selected');
         for (const step of piece.optionalSteps)
             this.table.rows[step[0]].cells[step[1]].classList.add('step');
     }
@@ -121,11 +120,13 @@ class BoardData {
         if (!this.currentPiece) return;
         for (const step of this.currentPiece.optionalSteps)
             this.table.rows[step[0]].cells[step[1]].classList.remove('step');
+        this.table.rows[this.currentPiece.r].cells[this.currentPiece.c].classList.remove('selected');
+
     }
 
     getOpponentStepsMap() {
         const opponentGroup = this.getOpponentGroup();
-        return opponentGroup.callcAllPosibaleMoves(this.matrix);
+        return opponentGroup.callcAllPosibaleMoves(this.matrix, false);
     }
 
     getOpponentGroup() {
@@ -182,11 +183,11 @@ class BoardData {
 
     displayTurn() {
         document.getElementById(`${this.currentGroup.color}-flag`).classList.remove('turn');
+        this.currentGroup = this.getOpponentGroup();
         document.getElementById(`${this.currentGroup.color}-flag`).classList.add('turn');
     }
 
-    createWinnerMessage(message) {
-        console.log('wins');
+    createMessage(message) {
         let div = document.createElement('div');
         div.classList.add('message-box');
         div.innerHTML = message;
