@@ -8,4 +8,5 @@ function calculateBmi(height: number, weight: number): string {
     else
         return "Normal (healthy weight)";
 }
+
 console.log(calculateBmi(180, 74));
