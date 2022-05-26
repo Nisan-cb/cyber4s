@@ -54,8 +54,5 @@ function calculateExercises(array: number[], target: number): Result {
     return result;
 }
 
-// let array: number[] = [3, 0, 2, 4.5, 0, 3, 1];
-// let target: number = 2;
-console.log(params[0]);
-console.log(params.slice(1));
+
 console.log(calculateExercises(params.slice(1), params[0]));
