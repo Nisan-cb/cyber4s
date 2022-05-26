@@ -1,3 +1,14 @@
+import { exit } from "process";
+
+const params = process.argv.slice(2);
+const height: number = Number(params[0]);
+const weight: number = Number(params[1]);
+console.log(height, weight)
+if (!height || !weight) {
+    console.log("not valid parameters");
+    exit();
+}
+
 function calculateBmi(height: number, weight: number): string {
     height /= 100;
     let result: number = weight / (height * height);
@@ -8,4 +19,5 @@ function calculateBmi(height: number, weight: number): string {
     else
         return "Normal (healthy weight)";
 }
-console.log(calculateBmi(180, 74));
+
+console.log(calculateBmi(height, weight));
