@@ -2,6 +2,8 @@
 console.log("TODO App");
 const todoList = []; // array of tasks
 function loadListFromLocalStorage(listArea) {
+    if (!localStorage.todoList)
+        return;
     for (const task of JSON.parse(localStorage.todoList)) {
         todoList.push(task);
         listArea.append(createNewTaskElement(task));

@@ -8,6 +8,7 @@ interface Task {
 const todoList: Task[] = [];  // array of tasks
 
 function loadListFromLocalStorage(listArea: HTMLElement) {
+    if (!localStorage.todoList) return;
     for (const task of JSON.parse(localStorage.todoList)) {
         todoList.push(task);
         listArea.append(createNewTaskElement(task));
