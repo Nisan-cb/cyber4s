@@ -60,22 +60,28 @@ section {
     padding: 7px 10px;
     border-radius: 7px;
     display: flex;
-    // justify-content: space-between;
     align-items: center;
     flex-direction: row;
 
-    input {
+    input { // the checkbox
         margin-right: 10px;
     }
 
     .delete-icon {
         color: red;
         margin-left: 5px;
+        cursor: pointer;
     }
 
     .edit-icon {
         color: blue;
         margin-left: auto;
+        cursor: pointer;
+        
     }
 
+}
+.done{
+    // background-color: red !important;
+    text-decoration: line-through;
 }

@@ -82,10 +82,16 @@ section {
 .task .delete-icon {
   color: red;
   margin-left: 5px;
+  cursor: pointer;
 }
 
 .task .edit-icon {
   color: blue;
   margin-left: auto;
+  cursor: pointer;
+}
+
+.done {
+  text-decoration: line-through;
 }
 /*# sourceMappingURL=style.css.map */
