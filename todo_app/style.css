@@ -16,9 +16,6 @@ section {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
 .container {
@@ -32,6 +29,10 @@ section {
           box-shadow: 0 0 7px 3px #ddd;
   color: black;
   padding: 25px 50px;
+  margin-top: 80px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 #app h1 {
