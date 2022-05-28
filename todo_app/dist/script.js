@@ -78,5 +78,12 @@ window.addEventListener('load', () => {
     addBtn?.addEventListener('click', () => {
         taskManager.addNewTask(input.value);
         localStorage.setItem('todoList', JSON.stringify(taskManager.taskArray));
+        input.value = "";
+    });
+    input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            addBtn.click();
+        }
     });
 });
