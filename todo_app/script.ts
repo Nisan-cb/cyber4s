@@ -91,6 +91,11 @@ class TaskManager {
         editIcon.style.display = 'none';
         editIcon.parentNode?.append(saveIcon)
         saveIcon.addEventListener('click', () => { this.saveChanges(task, inputElement, saveIcon, editIcon) })
+        inputElement.addEventListener('keypress', (e) => {
+            console.log('clicked')
+            if (e.key === 'Enter')
+                saveIcon.click();
+        })
     }
 
     saveChanges(task: Task, inputElement: HTMLInputElement, saveIcon: HTMLElement, editIcon: HTMLElement) {
