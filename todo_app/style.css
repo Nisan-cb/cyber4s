@@ -59,6 +59,7 @@ section {
 }
 
 .task {
+  position: relative;
   margin: 10px 0;
   background-color: #ddd;
   padding: 7px 10px;
@@ -80,8 +81,10 @@ section {
 }
 
 .task .delete-icon {
+  position: absolute;
   color: red;
-  margin-left: 5px;
+  right: 5px;
+  margin-left: 10px;
   cursor: pointer;
 }
 
@@ -89,6 +92,16 @@ section {
   color: blue;
   margin-left: auto;
   cursor: pointer;
+  position: absolute;
+  right: 30px;
+}
+
+.task .save-icon {
+  color: green;
+  margin-left: auto;
+  cursor: pointer;
+  position: absolute;
+  right: 30px;
 }
 
 .done {

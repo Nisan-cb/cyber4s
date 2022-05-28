@@ -20,13 +20,14 @@ class TaskManager {
             content: content,
             isDone: mode
         };
-        console.log(task);
         this.taskArray.push(task);
         const newTaskElement = document.createElement('div');
         const checkBox = document.createElement('input');
         const deletIcon = document.createElement('i');
         const editIcon = document.createElement('i');
+        const textContainer = document.createElement('span');
         const text = document.createElement('p');
+        textContainer.append(text);
         deletIcon.classList.add("material-icons", "delete-icon");
         deletIcon.innerHTML = "delete";
         editIcon.classList.add("material-icons", "edit-icon");
@@ -39,14 +40,13 @@ class TaskManager {
             checkBox.checked = true;
         }
         deletIcon.addEventListener('click', () => { this.deleteTask(task, newTaskElement); });
-        editIcon.addEventListener('click', this.editTask);
+        editIcon.addEventListener('click', () => { this.editTask(task, textContainer, editIcon); });
         checkBox.addEventListener('change', () => { this.checked(task, text); });
         newTaskElement.append(checkBox);
-        newTaskElement.append(text);
+        newTaskElement.append(textContainer);
         newTaskElement.append(editIcon);
         newTaskElement.append(deletIcon);
         this.listAreaElemet.insertBefore(newTaskElement, this.listAreaElemet.firstChild);
-        // this.listAreaElemet.append(newTaskElement)
     }
     checked(task, textElement) {
         task.isDone = !task.isDone;
@@ -62,11 +62,26 @@ class TaskManager {
         taskElement.remove();
         localStorage.setItem('todoList', JSON.stringify(this.taskArray));
     }
-    editTask() {
+    editTask(task, textContainer, editIcon) {
         console.log("edit mode");
+        textContainer.innerHTML = "";
+        const inputElement = document.createElement('input');
+        inputElement.value = task.content;
+        textContainer.append(inputElement);
+        const saveIcon = document.createElement('i');
+        saveIcon.classList.add('material-icons', "save-icon");
+        saveIcon.innerHTML = "save";
+        editIcon.style.display = 'none';
+        editIcon.parentNode?.append(saveIcon);
+        saveIcon.addEventListener('click', () => { this.saveChanges(task, inputElement, saveIcon, editIcon); });
     }
-    saveChanges() {
+    saveChanges(task, inputElement, saveIcon, editIcon) {
         console.log("saved");
+        task.content = inputElement.value;
+        inputElement.parentNode.innerHTML = inputElement.value;
+        saveIcon.remove();
+        editIcon.style.display = 'inline';
+        localStorage.setItem('todoList', JSON.stringify(this.taskArray));
     }
 }
 window.addEventListener('load', () => {
@@ -76,13 +91,15 @@ window.addEventListener('load', () => {
     const taskManager = new TaskManager(listArea);
     taskManager.loadTasksFromLoclStorage();
     addBtn?.addEventListener('click', () => {
+        if (!input.value.trim().length)
+            return;
         taskManager.addNewTask(input.value);
         localStorage.setItem('todoList', JSON.stringify(taskManager.taskArray));
         input.value = "";
     });
     input.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
-            e.preventDefault();
+            // e.preventDefault()
             addBtn.click();
         }
     });
