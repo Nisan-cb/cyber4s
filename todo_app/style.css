@@ -59,6 +59,10 @@ section {
   cursor: pointer;
 }
 
+#app #list-area {
+  min-height: 40vh;
+}
+
 .task {
   position: relative;
   margin: 10px 0;

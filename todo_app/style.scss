@@ -54,6 +54,11 @@ section {
         }
     }
 
+    #list-area {
+        // background: red;
+        min-height: 40vh;
+    }
+
 }
 
 .task {
@@ -98,6 +103,5 @@ section {
 }
 
 .done {
-    // background-color: red !important;
     text-decoration: line-through;
 }
